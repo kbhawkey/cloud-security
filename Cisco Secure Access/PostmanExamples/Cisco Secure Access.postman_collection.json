@@ -1,0 +1,2514 @@
+{
+	"info": {
+		"_postman_id": "691ea8e2-5857-465d-a90f-d91e6a8b7e71",
+		"name": "Cisco Secure Access",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "30186006"
+	},
+	"item": [
+		{
+			"name": "1. Auth - Start Here",
+			"item": [
+				{
+					"name": "Get Access Token",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": {
+								"password": "API Secret",
+								"username": "API Key"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{Authurl}}"
+					},
+					"response": []
+				}
+			],
+			"description": "First get your access token"
+		},
+		{
+			"name": "Deployments",
+			"item": [
+				{
+					"name": "Networks and Sites",
+					"item": [
+						{
+							"name": "List networks",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}deployments/v2/networks"
+							},
+							"response": []
+						},
+						{
+							"name": "List internal networks",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}deployments/v2/internalnetworks"
+							},
+							"response": []
+						},
+						{
+							"name": "List Sites",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}deployments/v2/sites"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Roaming Computers",
+					"item": [
+						{
+							"name": "List all Roaming Computers",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}deployments/v2/roamingcomputers"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Internal Domains",
+					"item": [
+						{
+							"name": "Get All internal domains",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}deployments/v2/internaldomains"
+							},
+							"response": []
+						},
+						{
+							"name": "Add internal domains",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"domain\": \"youtube.com\",\n  \"description\": \"Enter a description for this domain\",\n  \"includeAllVAs\": true,\n  \"includeAllMobileDevices\": true\n}"
+								},
+								"url": "{{server}}deployments/v2/internaldomains"
+							},
+							"response": []
+						},
+						{
+							"name": "Remove internal domain",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{server}}deployments/v2/internaldomains/1034405"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Tunnel Groups",
+					"item": [
+						{
+							"name": "Get All Regions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}deployments/v2/regions"
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Tunnel Groups",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}deployments/v2/networktunnelgroups"
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Tunnel Group",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"name\": \"Test Tunnel Group One\",\"region\": \"us-east-1\",\"authIdPrefix\": \"networktunnelone\",\"passphrase\": \"t3stingTunn3lNow\"}\n"
+								},
+								"url": "{{server}}deployments/v2/networktunnelgroups"
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a Tunnel Group",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": "{{server}}deployments/v2/networktunnelgroups/enterTunnelGroupID"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Connectors",
+					"item": [
+						{
+							"name": "Connector Agents",
+							"item": [
+								{
+									"name": "Get All Connectors",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/connectorAgents"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Connector Counts",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/connectorAgents/counts"
+									},
+									"response": []
+								},
+								{
+									"name": "Get a Specific Connector",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/connectorAgents/EnterConnectorID"
+									},
+									"response": []
+								},
+								{
+									"name": "Update a Connector",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/confirmed\",\n        \"value\": \"true\"\n    }\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{server}}deployments/v2/connectorAgents/EnterConnectorID"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete a Connector",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/connectorAgents/EnterConnectorID"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Connector Groups",
+							"item": [
+								{
+									"name": "Get All Connector Groups",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/connectorGroups"
+									},
+									"response": []
+								},
+								{
+									"name": "Get Connector Groups Counts",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/connectorGroups/counts"
+									},
+									"response": []
+								},
+								{
+									"name": "Create a Connector Group",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"A Connector Group\",\n    \"location\": \"us-west-2\",\n    \"environment\": \"aws\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{server}}deployments/v2/connectorGroups"
+									},
+									"response": []
+								},
+								{
+									"name": "Get a Specific Connector Group",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/connectorGroups/EnterConnectorGroupID"
+									},
+									"response": []
+								},
+								{
+									"name": "Update a Connector Group",
+									"request": {
+										"method": "PATCH",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "[\n    {\n        \"op\": \"replace\",\n        \"path\": \"/name\",\n        \"value\": \"A New Name\"\n    }\n]",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{server}}deployments/v2/connectorGroups/EnterConnectorGroupID"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete a Connector Group",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/connectorGroups/EnterConnectorGroupID"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "VPN Sessions",
+					"item": [
+						{
+							"name": "List VPN Sessions",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}admin/v2/vpn/userConnections"
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a VPN Session",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"action\": \"disconnect\", \"usernames\": [\"name@domain.com\"], \"sessions\": [\"sessionId\"]}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{server}}admin/v2/vpn/userConnections"
+							},
+							"response": []
+						},
+						{
+							"name": "Remove a Users VPN Sessions",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"action\": \"disconnect\", \"usernames\": [\"name@domain.com\"]}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{server}}admin/v2/vpn/userConnections"
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Multiple Users VPN Sessions Copy",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"action\": \"disconnect\", \"usernames\": [\"name1@domain.com\", \"name2@domain.com\"]}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{server}}admin/v2/vpn/userConnections"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "ZTNA",
+					"item": [
+						{
+							"name": "List a Users Device Certificates",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}admin/v2/ztna/users/userID/deviceCertificates"
+							},
+							"response": []
+						},
+						{
+							"name": "Provide User Summaries",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}admin/v2/ztna/userSummaries?userIds=userId",
+									"host": [
+										"{{server}}admin"
+									],
+									"path": [
+										"v2",
+										"ztna",
+										"userSummaries"
+									],
+									"query": [
+										{
+											"key": "userIds",
+											"value": "userId"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Policies",
+			"item": [
+				{
+					"name": "Destination Lists",
+					"item": [
+						{
+							"name": "List all Destination Lists",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/destinationlists"
+							},
+							"response": []
+						},
+						{
+							"name": "Add a Destination List",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\"bundleTypeId\": \"2\",\"access\": \"none\",\"isGlobal\": false,\"name\": \"New Destination List\"}"
+								},
+								"url": "{{server}}policies/v2/destinationlists"
+							},
+							"response": []
+						},
+						{
+							"name": "List Destinations for a Destination List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/destinationlists/EnterADestinationListId/destinations"
+							},
+							"response": []
+						},
+						{
+							"name": "Add Destinations to a List",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[{\"destination\":\"EnterADestination\",\"comment\":\"EnterAComment\"},{\"destination\":\"EnterADestination\",\"comment\":\"EnterAComment\"}]"
+								},
+								"url": "{{server}}policies/v2/destinationlists/EnterADestinationListId/destinations"
+							},
+							"response": []
+						},
+						{
+							"name": "Remove Destinations from a List",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[DestinationID1,DestinationID2]"
+								},
+								"url": "{{server}}policies/v2/destinationlists/EnterADestinationListId/destinations/remove"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Private Resources",
+					"item": [
+						{
+							"name": "Private Resources",
+							"item": [
+								{
+									"name": "List all Private Resources",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}policies/v2/privateResources"
+									},
+									"response": []
+								},
+								{
+									"name": "Get a Specific Private Resource",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}policies/v2/privateResources/EnterPrivateResourceID"
+									},
+									"response": []
+								},
+								{
+									"name": "Create a Private Resource",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"resourceName\",\n    \"description\": \"\",\n    \"dnsServerId\": enterAnId,\n    \"certificateId\": enterAnId,\n    \"accessTypes\": [\n        {\n            \"type\": \"browser\",\n            \"externalFQDNPrefix\": \"appPrefix\",\n            \"protocol\": \"HTTPS\",\n            \"sni\": \"example.TLD.com\",\n            \"sslVerificationEnabled\": true\n        },\n        { \"type\": \"network\" },\n        {\n            \"type\": \"client\",\n            \"reachableAddresses\": [\n                \"IPaddress\",\n                \"example.com\"\n            ]\n        }\n    ],\n    \"resourceAddresses\": [\n        {\n            \"destinationAddr\": [\n                \"example.com\",\n                \"address/32\"\n            ],\n            \"protocolPorts\": [\n                {\n                    \"protocol\": \"HTTP/HTTPS\",\n                    \"ports\": \"443\"\n                }\n            ]\n        }\n    ],\n    \"resourceGroupIds\": [5]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{server}}policies/v2/privateResources"
+									},
+									"response": []
+								},
+								{
+									"name": "Update a Private Resource",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"resourceName\",\n    \"description\": \"\",\n    \"accessTypes\": [\n        {\n            \"type\": \"browser\",\n            \"externalFQDNPrefix\": \"appPrefix\",\n            \"protocol\": \"HTTPS\",\n            \"sni\": \"example.TLD.com\",\n            \"sslVerificationEnabled\": true\n        },\n        { \"type\": \"network\" },\n        {\n            \"type\": \"client\",\n            \"reachableAddresses\": [\n                \"IPaddress\",\n                \"example.com\"\n            ]\n        }\n    ],\n    \"resourceAddresses\": [\n        {\n            \"destinationAddr\": [\n                \"example.com\",\n                \"IPaddress/32\"\n            ],\n            \"protocolPorts\": [\n                {\n                    \"protocol\": \"HTTP/HTTPS\",\n                    \"ports\": \"443\"\n                }\n            ]\n        }\n    ],\n    \"resourceGroupIds\": [5]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{server}}policies/v2/privateResources/enterResourceID"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete a Private Resource",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}policies/v2/privateResources/enterResourceID"
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "Private Resource Groups",
+							"item": [
+								{
+									"name": "List all Private Resource Groups",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}policies/v2/privateResourceGroups"
+									},
+									"response": []
+								},
+								{
+									"name": "Create a Private Resource Group",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"privateResourceGroupName\",\n    \"description\": \"The description of the private resource group.\",\n    \"resourceIds\": [ ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{server}}policies/v2/privateResourceGroups"
+									},
+									"response": []
+								},
+								{
+									"name": "Get a Private Resource Groups",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}policies/v2/privateResourceGroups/EnterPrivateResourceGroupID"
+									},
+									"response": []
+								},
+								{
+									"name": "Update a Private Resource Group",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"privateResourceGroupName\",\n    \"description\": \"The description of the private resource group.\",\n    \"resourceIds\": [ ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{server}}policies/v2/privateResourceGroups/EnterPrivateResourceGroupID"
+									},
+									"response": []
+								},
+								{
+									"name": "Delete a Private Resource Group",
+									"request": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"name\": \"privateResourceGroupName\",\n    \"description\": \"The description of the private resource group.\",\n    \"resourceIds\": [ ]\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{server}}policies/v2/privateResourceGroups/EnterPrivateResourceGroupID"
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Rules",
+					"item": [
+						{
+							"name": "Example: Destination Lists and Roaming Computers",
+							"item": [
+								{
+									"name": "Find a Rule",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": {
+											"raw": "{{server}}policies/v2/rules?ruleName=EnterRuleName",
+											"host": [
+												"{{server}}policies"
+											],
+											"path": [
+												"v2",
+												"rules"
+											],
+											"query": [
+												{
+													"key": "ruleName",
+													"value": "EnterRuleName"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get the Rule Details",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}policies/v2/rules/EnterYourRuleID"
+									},
+									"response": []
+								},
+								{
+									"name": "List Roaming Computers",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/roamingcomputers"
+									},
+									"response": []
+								},
+								{
+									"name": "List all Destination Lists",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}policies/v2/destinationlists"
+									},
+									"response": []
+								},
+								{
+									"name": "Update a Rule",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"ruleName\": \"EnterYourRuleName\",\n    \"ruleDescription\": \"\",\n    \"ruleAction\": \"allow\",\n    \"rulePriority\": 114,\n    \"ruleIsDefault\": false,\n    \"ruleIsEnabled\": true,\n    \"ruleConditions\": [\n        {\n            \"attributeId\": 2,\n            \"attributeValue\": [\n                EnterRoamingComputerID1,\n                EnterRoamingComputerID2\n            ],\n            \"attributeName\": \"umbrella.source.identity_ids\",\n            \"attributeOperator\": \"INTERSECT\"\n        },\n        {\n            \"attributeId\": 4,\n            \"attributeValue\": [\n              EnterDestinationListID\n            ],\n            \"attributeName\": \"umbrella.destination.destination_list_ids\",\n            \"attributeOperator\": \"INTERSECT\"\n        }\n    ],\n    \"ruleSettings\": [\n        {\n            \"settingName\": \"umbrella.logLevel\",\n            \"settingValue\": \"LOG_ALL\",\n            \"settingId\": 5\n        },\n        {\n            \"settingName\": \"umbrella.default.traffic\",\n            \"settingValue\": \"PUBLIC_INTERNET\",\n            \"settingId\": 9\n        }\n    ],\n    \"ruleAccess\": \"public_internet\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{server}}policies/v2/rules/EnterYourRuleID"
+									},
+									"response": []
+								}
+							],
+							"description": "First get your access token"
+						},
+						{
+							"name": "Example: Tunnels and Public Applications",
+							"item": [
+								{
+									"name": "Find a Rule",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": {
+											"raw": "{{server}}policies/v2/rules?ruleName=EnterRuleName",
+											"host": [
+												"{{server}}policies"
+											],
+											"path": [
+												"v2",
+												"rules"
+											],
+											"query": [
+												{
+													"key": "ruleName",
+													"value": "EnterRuleName"
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get the Rule Details",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}policies/v2/rules/EnterYourRuleID"
+									},
+									"response": []
+								},
+								{
+									"name": "List Tunnel Groups",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/networktunnelgroups"
+									},
+									"response": []
+								},
+								{
+									"name": "Get a specific Tunnel Group",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}deployments/v2/networktunnelgroups/enterTunnelGroupID"
+									},
+									"response": []
+								},
+								{
+									"name": "List all Application Lists",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}policies/v2/applicationLists"
+									},
+									"response": []
+								},
+								{
+									"name": "Get a specific Application List",
+									"request": {
+										"method": "GET",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"url": "{{server}}policies/v2/applicationLists/EnterApplicationListID"
+									},
+									"response": []
+								},
+								{
+									"name": "Update a Rule",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Authorization",
+												"value": "Bearer {{AccessToken}}"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"ruleName\": \"EnterYourRuleName\",\n    \"ruleDescription\": \"\",\n    \"ruleAction\": \"block\",\n    \"rulePriority\": 114,\n    \"ruleIsDefault\": false,\n    \"ruleIsEnabled\": true,\n    \"ruleConditions\": [\n        {\n            \"attributeId\": 2,\n            \"attributeValue\": [\n                EnterTunnelGroupID\n            ],\n            \"attributeName\": \"umbrella.source.identity_ids\",\n            \"attributeOperator\": \"INTERSECT\"\n        },\n        {\n            \"attributeId\": 4,\n            \"attributeValue\": [\n              EnterApplicationListID\n            ],\n            \"attributeName\": \"umbrella.destination.application_list_ids\",\n            \"attributeOperator\": \"INTERSECT\"\n        }\n    ],\n    \"ruleSettings\": [\n        {\n            \"settingName\": \"umbrella.logLevel\",\n            \"settingValue\": \"LOG_ALL\",\n            \"settingId\": 5\n        },\n        {\n            \"settingName\": \"umbrella.default.traffic\",\n            \"settingValue\": \"PUBLIC_INTERNET\",\n            \"settingId\": 9\n        }\n    ],\n    \"ruleAccess\": \"public_internet\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{server}}policies/v2/rules/EnterYourRuleID"
+									},
+									"response": []
+								}
+							],
+							"description": "First get your access token"
+						},
+						{
+							"name": "List all Rules",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/rules"
+							},
+							"response": []
+						},
+						{
+							"name": "Create a Rule",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ruleName\": \"Test Rule Name\",\n    \"ruleDescription\": \"A description for the rule.\",\n    \"ruleAction\": \"allow\",\n    \"ruleConditions\": [\n        {\n            \"attributeId\": 2,\n            \"attributeValue\": [\n                12345\n            ],\n            \"attributeName\": \"umbrella.source.identity_ids\",\n            \"attributeOperator\": \"INTERSECT\"\n        },\n        {\n            \"attributeId\": 15,\n            \"attributeValue\": true,\n            \"attributeName\": \"umbrella.destination.all\",\n            \"attributeOperator\": \"=\"\n        }\n    ],\n    \"ruleSettings\": [\n        {\n            \"settingId\": 5,\n            \"settingValue\": \"LOG_ALL\",\n            \"settingName\": \"umbrella.logLevel\"\n        },\n        {\n            \"settingId\": 9,\n            \"settingValue\": \"PUBLIC_INTERNET\",\n            \"settingName\": \"umbrella.default.traffic\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{server}}policies/v2/rules"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a Specific Rule",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/rules/EnterYourRuleID"
+							},
+							"response": []
+						},
+						{
+							"name": "Update a Rule",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ruleName\": \"Test Rule Name\",\n    \"ruleDescription\": \"A description for the rule.\",\n    \"ruleAction\": \"allow\",\n    \"rulePriority\": 100,\n    \"ruleConditions\": [\n        {\n            \"attributeId\": 2,\n            \"attributeValue\": [\n                12345\n            ],\n            \"attributeName\": \"umbrella.source.identity_ids\",\n            \"attributeOperator\": \"INTERSECT\"\n        },\n        {\n            \"attributeId\": 15,\n            \"attributeValue\": true,\n            \"attributeName\": \"umbrella.destination.all\",\n            \"attributeOperator\": \"=\"\n        }\n    ],\n    \"ruleSettings\": [\n        {\n            \"settingId\": 5,\n            \"settingValue\": \"LOG_ALL\",\n            \"settingName\": \"umbrella.logLevel\"\n        },\n        {\n            \"settingId\": 9,\n            \"settingValue\": \"PUBLIC_INTERNET\",\n            \"settingName\": \"umbrella.default.traffic\"\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{server}}policies/v2/rules/EnterYourRuleID"
+							},
+							"response": []
+						},
+						{
+							"name": "Bulk Enable Rules",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ruleIds\": [ ruleId1, ruleId2 ],\n    \"properties\": [\n        { \"ruleIsEnabled\": false }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{server}}policies/v2/rules"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a Rule",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/rules/EnterYourRuleID"
+							},
+							"response": []
+						},
+						{
+							"name": "List all Geolocations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/geolocations"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Application Lists",
+					"item": [
+						{
+							"name": "List all Application Lists",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/applicationLists"
+							},
+							"response": []
+						},
+						{
+							"name": "Create Application List",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"applicationCategoryIds\": [],\n    \"applicationIds\": [],\n    \"applicationListName\": \"New Application List Name\",\n    \"isDefault\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{server}}policies/v2/applicationLists"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a specific Application List",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/applicationLists/EnterYourListId"
+							},
+							"response": []
+						},
+						{
+							"name": "Update an Application List",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"applicationCategoryIds\": [],\n    \"applicationIds\": [],\n    \"applicationListName\": \"New Application List Name\",\n    \"isDefault\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{server}}policies/v2/applicationLists/EnterApplicationListID"
+							},
+							"response": []
+						},
+						{
+							"name": "Delete an Application List",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/applicationLists/EnterApplicationListID"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Settings",
+					"item": [
+						{
+							"name": "List all Policy Settings",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/settings"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a Specific Setting",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/settings/EnterSettingName"
+							},
+							"response": []
+						},
+						{
+							"name": "List all Policy Setting Types",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/settingTypes"
+							},
+							"response": []
+						},
+						{
+							"name": "Get a Specific Setting Type",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}policies/v2/settingTypes/EnterSettingType"
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Destinations",
+					"item": [
+						{
+							"name": "Top Destinations DNS",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/top-destinations/dns?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"top-destinations",
+										"dns"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Top Destinations Proxy",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/top-destinations/proxy?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"top-destinations",
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Top Destinations Firewall",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/top-destinations/firewall?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"top-destinations",
+										"firewall"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Total Requests",
+					"item": [
+						{
+							"name": "Total Requests",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/total-requests?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"total-requests"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Total Requests DNS",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/total-requests/dns?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"total-requests",
+										"dns"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Total Requests Proxy",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/total-requests/proxy?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"total-requests",
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Total Requests Firewall",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/total-requests/firewall?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"total-requests",
+										"firewall"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Categories",
+					"item": [
+						{
+							"name": "Top Categories",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/top-categories?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"top-categories"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Activity",
+					"item": [
+						{
+							"name": "All Activity",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/activity?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"activity"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DNS Activity",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/activity/dns?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"activity",
+										"dns"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Proxy Activity",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/activity/proxy?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"activity",
+										"proxy"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Firewall Activity",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/activity/firewall?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"activity",
+										"firewall"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "EnterTheFromDateInEpochMs"
+										},
+										{
+											"key": "to",
+											"value": "EnterTheToDateInEpochMs"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Utility",
+					"item": [
+						{
+							"name": "Roaming Devices",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/identities?limit=100&offset=0&identitytypes=roaming",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"identities"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "100"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "identitytypes",
+											"value": "roaming"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Networks",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/identities?limit=100&offset=0&identitytypes=network",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"identities"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "100"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "identitytypes",
+											"value": "network"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Mobile Devices",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/identities?limit=100&offset=0&identitytypes=mobile_device,android",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"identities"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "100"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "identitytypes",
+											"value": "mobile_device,android"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "AD Users",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/identities?limit=100&offset=0&identitytypes=directory_user",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"identities"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "100"
+										},
+										{
+											"key": "offset",
+											"value": "0"
+										},
+										{
+											"key": "identitytypes",
+											"value": "directory_user"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Applications",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}reports/v2/applications"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "App Discovery",
+					"item": [
+						{
+							"name": "Applications",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}reports/v2/appDiscovery/applications"
+							},
+							"response": []
+						},
+						{
+							"name": "App Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}reports/v2/appDiscovery/applications/<enterAppID>/risk"
+							},
+							"response": []
+						},
+						{
+							"name": "App Identities",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}reports/v2/appDiscovery/applications/<enterAppID>/identities"
+							},
+							"response": []
+						},
+						{
+							"name": "App Risk Details",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": "{{server}}reports/v2/appDiscovery/applications/<enterAppID>/risk"
+							},
+							"response": []
+						},
+						{
+							"name": "Update App Label",
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": " { \"label\": \"unreviewed\" } ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{server}}reports/v2/appDiscovery/applications/<enterAppID>"
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "API Usage",
+					"item": [
+						{
+							"name": "API Summary",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/apiUsage/summary?from=YYYY-MM-DD&to=YYYY-MM-DD",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"apiUsage",
+										"summary"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "YYYY-MM-DD"
+										},
+										{
+											"key": "to",
+											"value": "YYYY-MM-DD"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "API Requests",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/apiUsage/requests?from=YYYY-MM-DD&to=YYYY-MM-DD",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"apiUsage",
+										"requests"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "YYYY-MM-DD"
+										},
+										{
+											"key": "to",
+											"value": "YYYY-MM-DD"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "API Responses",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/apiUsage/responses?from=YYYY-MM-DD&to=YYYY-MM-DD",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"apiUsage",
+										"responses"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "YYYY-MM-DD"
+										},
+										{
+											"key": "to",
+											"value": "YYYY-MM-DD"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "API Keys",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{AccessToken}}"
+									}
+								],
+								"url": {
+									"raw": "{{server}}reports/v2/apiUsage/keys?from=YYYY-MM-DD&to=YYYY-MM-DD",
+									"host": [
+										"{{server}}reports"
+									],
+									"path": [
+										"v2",
+										"apiUsage",
+										"keys"
+									],
+									"query": [
+										{
+											"key": "from",
+											"value": "YYYY-MM-DD"
+										},
+										{
+											"key": "to",
+											"value": "YYYY-MM-DD"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Top Internal IPs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}reports/v2/top-ips/internal?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+							"host": [
+								"{{server}}reports"
+							],
+							"path": [
+								"v2",
+								"top-ips",
+								"internal"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "EnterTheFromDateInEpochMs"
+								},
+								{
+									"key": "to",
+									"value": "EnterTheToDateInEpochMs"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Total Requests",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{server}}reports/v2/total-requests?from=EnterTheFromDateInEpochMs&to=EnterTheToDateInEpochMs&limit=1&offset=0",
+							"host": [
+								"{{server}}reports"
+							],
+							"path": [
+								"v2",
+								"total-requests"
+							],
+							"query": [
+								{
+									"key": "from",
+									"value": "EnterTheFromDateInEpochMs"
+								},
+								{
+									"key": "to",
+									"value": "EnterTheToDateInEpochMs"
+								},
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "offset",
+									"value": "0"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "First get your access token"
+		},
+		{
+			"name": "Investigate",
+			"item": [
+				{
+					"name": "Domain Categorization",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": "{{server}}investigate/v2/domains/categorization/enterDomainName"
+					},
+					"response": []
+				},
+				{
+					"name": "Domain Risk Score",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": "{{server}}investigate/v2/domains/risk-score/enterDomainName"
+					},
+					"response": []
+				},
+				{
+					"name": "Domain Security Score Information",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": "{{server}}investigate/v2/security/name/enterDomainURL"
+					},
+					"response": []
+				},
+				{
+					"name": "Top Most Seen Domains",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": "{{server}}investigate/v2/topmillion"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Samples for Domain, IP, or URL",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": "{{server}}investigate/v2/samples/enterDomainURL"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Domain Volume",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": "{{server}}investigate/v2/domains/volume/enterDomainURL"
+					},
+					"response": []
+				},
+				{
+					"name": "Domain Resource Records",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{AccessToken}}"
+							}
+						],
+						"url": "{{server}}investigate/v2/pdns/name/enterDomainURL"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
